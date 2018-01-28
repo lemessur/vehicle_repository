@@ -121,8 +121,10 @@ namespace VehicleInventory
             // var teslas = vehicleBusiness.GetVehiclesByManufacturer("Tesla");
             var bmws = vehicleBusiness.GetVehiclesByManufacturer("BMW");
 
-            Console.WriteLine("Here are the BMWs:");
+            Console.WriteLine("\nHere are just the BMWs:");
             Utils.PrintVehicles(bmws);
+
+            Console.WriteLine("\nPress any key to exit");
 
             //var s = new System.Diagnostics.Stopwatch();
             //s.Start();
