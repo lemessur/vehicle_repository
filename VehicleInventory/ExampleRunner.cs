@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Unity;
 
@@ -13,6 +14,11 @@ namespace VehicleInventory
     /// </summary>
     public class ExampleRunner
     {
+        /// <summary>
+        /// Local cache of all vehicles currently in the database
+        /// </summary>
+        public IEnumerable<Vehicle> AllVehicles { get; set; }
+
         /// <summary>
         /// Dependency injection container
         /// </summary>
@@ -39,15 +45,12 @@ namespace VehicleInventory
 
             // Make sure our container will be able to resolve the necessary data access and business layer classes
             RegisterComponents();
-
-            // Run the example!
-            PerformExample();
         }
 
         /// <summary>
         /// Carry out the example as described in the instructions.
         /// </summary>
-        private void PerformExample()
+        public void PerformExample()
         {
             var vehicleBusiness = container.Resolve<VehicleBusiness>();
 
@@ -113,10 +116,10 @@ namespace VehicleInventory
                 });
             }
 
-            var allVehicles = vehicleBusiness.GetAllVehicles();
+            AllVehicles = vehicleBusiness.GetAllVehicles();
 
             Console.WriteLine("Here are all of the vehicles in inventory:");
-            Utils.PrintVehicles(allVehicles);
+            Utils.PrintVehicles(AllVehicles);
 
             // var teslas = vehicleBusiness.GetVehiclesByManufacturer("Tesla");
             var bmws = vehicleBusiness.GetVehiclesByManufacturer("BMW");
